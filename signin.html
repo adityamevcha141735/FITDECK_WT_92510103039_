@@ -435,7 +435,7 @@
                 document.getElementById("eml").innerHTML = "Please Enter Your Email";
                 return false;
             }
-            var emailformat = /^[a-zA-Z0-9._-]+@[a-zA-Z]{2,6}\.[a-z]{2,4}(\.[a-z]{0,2})?$/;
+           var emailformat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailformat.test(email)) {
                 document.getElementById("eml").innerHTML = "Please Enter Correct Email Format";
                 return false;
