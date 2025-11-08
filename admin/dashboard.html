@@ -56,7 +56,7 @@
                 </a>
             </div>
             <div class="nav-item">
-                <a href="signin.html" class="nav-link">
+                <a href="#" onclick="logout(); return false;" class="nav-link">
                     <i class="fas fa-sign-out-alt nav-icon"></i>
                     <span>Logout</span>
                 </a>
@@ -348,6 +348,35 @@
     </main>
 
     <script>
+        // Authentication check - protect admin page
+        (function() {
+            var isLoggedIn = sessionStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn');
+            var userType = sessionStorage.getItem('userType') || localStorage.getItem('userType');
+            
+            if (isLoggedIn !== 'true' || userType !== 'admin') {
+                alert('Please login as admin to access this page.');
+                window.location.href = '../signin.html';
+            }
+        })();
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Clear session storage
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('userType');
+                sessionStorage.removeItem('userEmail');
+                
+                // Clear local storage
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userType');
+                localStorage.removeItem('userEmail');
+                
+                // Redirect to signin page
+                window.location.href = '../signin.html';
+            }
+        }
+
         // Add some interactive functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Animate counters

@@ -348,6 +348,16 @@
         <div class="form-container">
             <h2>Member Sign In</h2>
             
+            <!-- Demo Credentials Info Box -->
+            <div style="background: rgba(121, 186, 55, 0.1); border: 1px solid var(--first-color); border-radius: 10px; padding: 15px; margin-bottom: 20px; font-size: 0.85rem;">
+                <strong style="color: var(--first-color);">Demo Credentials:</strong>
+                <div style="margin-top: 8px; color: var(--text-color);">
+                    <div><strong>Admin:</strong> admin@fitdeck.com / admin123</div>
+                    <div style="margin-top: 5px;"><strong>User:</strong> user@fitdeck.com / user123</div>
+                    <div style="margin-top: 5px;"><strong>Member:</strong> member@fitdeck.com / member123</div>
+                </div>
+            </div>
+            
             <form id="signin-form" onsubmit="return validate();">
                 <div class="form-group">
                     <label for="emails">Email Address</label>
@@ -401,6 +411,17 @@
     </div>
 
     <script>
+        // Predefined credentials (for demo purposes - no backend)
+        const ADMIN_CREDENTIALS = {
+            email: "admin@fitdeck.com",
+            password: "admin123"
+        };
+
+        const USER_CREDENTIALS = [
+            { email: "user@fitdeck.com", password: "user123" },
+            { email: "member@fitdeck.com", password: "member123" }
+        ];
+
         function validate() {
             var email = document.getElementById("emails").value.trim();
             var password = document.getElementById("pass").value.trim();
@@ -425,20 +446,140 @@
                 document.getElementById("pas").innerHTML = "Please Enter Your Password";
                 return false;
             }
-            var passformat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-            if (!passformat.test(password)) {
-                document.getElementById("pas").innerHTML = "Minimum 8 characters, at least 1 Alphabet and 1 Number";
-                return false;
-            }
             if (password.length < 6 || password.length > 12) {
                 document.getElementById("pas").innerHTML = "Password must be between 6 to 12 characters";
                 return false;
             }
 
-            alert("Form submitted successfully!");
-            return true;
+            // Check if admin credentials
+            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                // Store admin login session
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('userType', 'admin');
+                sessionStorage.setItem('userEmail', email);
+                
+                // Show success message
+                showMessage("Admin login successful! Redirecting to admin panel...", "success");
+                
+                // Redirect to admin dashboard after short delay
+                setTimeout(function() {
+                    window.location.href = "admin/dashboard.html";
+                }, 1500);
+                return false; // Prevent form submission
+            }
+
+            // Check if user credentials
+            var isValidUser = USER_CREDENTIALS.some(function(user) {
+                return user.email === email && user.password === password;
+            });
+
+            if (isValidUser) {
+                // Store user login session
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('userType', 'user');
+                sessionStorage.setItem('userEmail', email);
+                
+                // Check remember me
+                var rememberMe = document.getElementById("remember").checked;
+                if (rememberMe) {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userType', 'user');
+                    localStorage.setItem('userEmail', email);
+                }
+                
+                // Show success message
+                showMessage("Login successful! Redirecting to website...", "success");
+                
+                // Redirect to main website after short delay
+                setTimeout(function() {
+                    window.location.href = "index.html";
+                }, 1500);
+                return false; // Prevent form submission
+            }
+
+            // Invalid credentials
+            showMessage("Invalid email or password. Please try again.", "error");
+            document.getElementById("pas").innerHTML = "Invalid email or password";
+            return false;
         }
 
+        function showMessage(message, type) {
+            // Remove existing message if any
+            var existingMsg = document.getElementById("login-message");
+            if (existingMsg) {
+                existingMsg.remove();
+            }
+
+            // Create message element
+            var msgDiv = document.createElement("div");
+            msgDiv.id = "login-message";
+            msgDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 15px 30px;
+                border-radius: 10px;
+                color: white;
+                font-weight: bold;
+                z-index: 10000;
+                animation: slideDown 0.3s ease-out;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                ${type === 'success' ? 'background: linear-gradient(90deg, var(--first-color), var(--first-color-dark));' : 'background: #e74c3c;'}
+            `;
+            msgDiv.textContent = message;
+            document.body.appendChild(msgDiv);
+
+            // Remove message after 3 seconds
+            setTimeout(function() {
+                msgDiv.style.animation = "slideUp 0.3s ease-out";
+                setTimeout(function() {
+                    msgDiv.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Add CSS animations for message
+        var style = document.createElement("style");
+        style.textContent = `
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }
+            }
+            @keyframes slideUp {
+                from {
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(-20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Check if user is already logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            var isLoggedIn = sessionStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn');
+            var userType = sessionStorage.getItem('userType') || localStorage.getItem('userType');
+            
+            if (isLoggedIn === 'true') {
+                if (userType === 'admin') {
+                    // Already logged in as admin, redirect to admin panel
+                    window.location.href = "admin/dashboard.html";
+                } else {
+                    // Already logged in as user, redirect to main website
+                    window.location.href = "index.html";
+                }
+            }
+        });
     </script>
 </body>
 </html>
