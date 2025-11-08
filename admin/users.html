@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Users</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+</head>
+<body class="admin">
+    <div class="admin__layout">
+        <aside class="admin__sidebar">
+            <div class="admin__brand">
+                <a href="dashboard.html" class="admin__logo">FitDeck Admin</a>
+            </div>
+            <nav class="admin__nav">
+                <a href="dashboard.html" class="admin__nav-link"><i class="ri-dashboard-line"></i> Dashboard</a>
+                <a href="users.html" class="admin__nav-link active"><i class="ri-user-3-line"></i> Users</a>
+                <a href="classes.html" class="admin__nav-link"><i class="ri-dumbbell-line"></i> Classes</a>
+                <a href="pricing.html" class="admin__nav-link"><i class="ri-price-tag-3-line"></i> Pricing</a>
+                <a href="content.html" class="admin__nav-link"><i class="ri-file-list-3-line"></i> Content</a>
+            </nav>
+        </aside>
+        <main class="admin__main">
+            <header class="admin__header">
+                <h1>Users</h1>
+                <div class="admin__header-actions">
+                    <button class="button" id="add-user-btn"><i class="ri-add-line"></i> Add User</button>
+                </div>
+            </header>
+            <section class="admin__content">
+                <div class="admin__card">
+                    <div class="admin__table-actions">
+                        <input type="search" placeholder="Search users..." class="admin__input" id="search-users">
+                    </div>
+                    <div class="admin__table-wrapper">
+                        <table class="admin__table" id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Plan</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- rows injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <div class="admin__modal" id="user-modal" hidden>
+                <div class="admin__modal-content">
+                    <h3 id="user-modal-title">Add User</h3>
+                    <form id="user-form">
+                        <div class="admin__form-grid">
+                            <input class="admin__input" name="name" placeholder="Full name" required>
+                            <input class="admin__input" name="email" type="email" placeholder="Email" required>
+                            <select class="admin__input" name="plan">
+                                <option>Basic</option>
+                                <option>Premium</option>
+                                <option>Diamond</option>
+                            </select>
+                            <select class="admin__input" name="status">
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+                        </div>
+                        <div class="admin__modal-actions">
+                            <button type="button" class="button button--ghost" id="cancel-user">Cancel</button>
+                            <button type="submit" class="button">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+    <script>
+        const users = [
+            { id: 1, name: 'John Carter', email: 'john@example.com', plan: 'Basic', status: 'Active' },
+            { id: 2, name: 'Ana Silva', email: 'ana@example.com', plan: 'Premium', status: 'Inactive' },
+            { id: 3, name: 'Lee Wong', email: 'lee@example.com', plan: 'Diamond', status: 'Active' },
+        ];
+
+        const tbody = document.querySelector('#users-table tbody');
+        const render = (data) => {
+            tbody.innerHTML = data.map(u => `
+                <tr>
+                    <td>${u.name}</td>
+                    <td>${u.email}</td>
+                    <td>${u.plan}</td>
+                    <td>${u.status}</td>
+                    <td>
+                        <button class="admin__icon-btn" data-edit="${u.id}"><i class="ri-edit-line"></i></button>
+                        <button class="admin__icon-btn" data-delete="${u.id}"><i class="ri-delete-bin-line"></i></button>
+                    </td>
+                </tr>`).join('');
+        };
+        render(users);
+
+        document.getElementById('search-users').addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase();
+            render(users.filter(u => Object.values(u).join(' ').toLowerCase().includes(q)));
+        });
+    </script>
+</body>
+</html>
+
+
+
+

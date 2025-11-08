@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Interactive Product Card & Checkout</title>
+    <link rel="icon" href="images/icons/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <style>
+      .product-card:hover { box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.1); transform: translateY(-2px); }
+      .product-card { transition: all 0.2s ease-in-out; }
+      .price { font-weight: 700; color: #0d6efd; }
+      .qty-input { width: 96px; }
+      .sticky-summary { position: sticky; top: 1rem; }
+    </style>
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+      <div class="container">
+        <a class="navbar-brand" href="#">Shop</a>
+        <div class="ml-auto d-flex align-items-center">
+          <span class="badge badge-primary mr-2">Cart</span>
+          <span id="cartCount" class="badge badge-pill badge-dark">0</span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container my-4">
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+          <div class="card product-card">
+            <div class="row no-gutters">
+              <div class="col-md-5">
+                <img src="images/mul.jpg" class="card-img h-100" alt="Product image" style="object-fit: cover;">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body d-flex flex-column h-100">
+                  <h5 class="card-title mb-2">Sample Product</h5>
+                  <p class="card-text text-muted mb-1">SKU: SP-001</p>
+                  <p id="displayPrice" class="card-text price h4 mb-3"></p>
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="input-group qty-input mr-3">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" id="decreaseQty">−</button>
+                      </div>
+                      <input id="qty" type="text" class="form-control text-center" value="1" aria-label="Quantity">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="increaseQty">+</button>
+                      </div>
+                    </div>
+                    <button id="addToCart" class="btn btn-primary">Add to Cart</button>
+                  </div>
+                  <p class="small text-muted mb-0">Free shipping on orders over ₹5,000.</p>
+                  <div class="mt-auto pt-3">
+                    <button id="buyNow" class="btn btn-outline-primary btn-sm">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card sticky-summary">
+            <div class="card-header bg-white">
+              <strong>Order Summary</strong>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-2">
+                <span>Items</span>
+                <span id="summaryItems">0</span>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span>Subtotal</span>
+                <span id="summarySubtotal">₹0.00</span>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span>Shipping</span>
+                <span id="summaryShipping">₹0.00</span>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between h5">
+                <span>Total</span>
+                <span id="summaryTotal">₹0.00</span>
+              </div>
+              <button id="proceedCheckout" class="btn btn-success btn-block mt-3" disabled>Proceed to Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="checkoutSection" class="card mt-4 d-none">
+        <div class="card-header bg-white">
+          <strong>Checkout</strong>
+        </div>
+        <div class="card-body">
+          <form id="checkoutForm" novalidate>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="John Doe" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-8">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="zip">ZIP</label>
+                <input type="text" class="form-control" id="zip" placeholder="00000" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber" placeholder="4111 1111 1111 1111" required>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="expiry">Expiry</label>
+                <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" placeholder="123" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-center text-muted small py-4">© 2025 Demo Store</footer>
+
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+      (function() {
+        var price = 2999; // in INR
+        var items = 0;
+        var qtyInput = document.getElementById('qty');
+        var decreaseBtn = document.getElementById('decreaseQty');
+        var increaseBtn = document.getElementById('increaseQty');
+        var addToCartBtn = document.getElementById('addToCart');
+        var buyNowBtn = document.getElementById('buyNow');
+        var cartCount = document.getElementById('cartCount');
+        var summaryItems = document.getElementById('summaryItems');
+        var summarySubtotal = document.getElementById('summarySubtotal');
+        var summaryShipping = document.getElementById('summaryShipping');
+        var summaryTotal = document.getElementById('summaryTotal');
+        var proceedCheckout = document.getElementById('proceedCheckout');
+        var checkoutSection = document.getElementById('checkoutSection');
+        var checkoutForm = document.getElementById('checkoutForm');
+
+        function parseQty() {
+          var v = parseInt(qtyInput.value, 10);
+          if (isNaN(v) || v < 1) return 1;
+          return Math.min(v, 99);
+        }
+
+        var currencyFormatter = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 });
+        function formatCurrency(n) { return currencyFormatter.format(n); }
+
+        function recompute() {
+          cartCount.textContent = String(items);
+          summaryItems.textContent = String(items);
+          var subtotal = items * price;
+          var shipping = (subtotal >= 5000 || items === 0) ? 0 : 250;
+          var total = subtotal + shipping;
+          summarySubtotal.textContent = formatCurrency(subtotal);
+          summaryShipping.textContent = formatCurrency(shipping);
+          summaryTotal.textContent = formatCurrency(total);
+          proceedCheckout.disabled = items === 0;
+        }
+
+        decreaseBtn.addEventListener('click', function() {
+          var q = parseQty();
+          q = Math.max(1, q - 1);
+          qtyInput.value = String(q);
+        });
+
+        increaseBtn.addEventListener('click', function() {
+          var q = parseQty();
+          q = Math.min(99, q + 1);
+          qtyInput.value = String(q);
+        });
+
+        qtyInput.addEventListener('input', function() {
+          qtyInput.value = String(parseQty());
+        });
+
+        function addToCart(q) {
+          items += q;
+          recompute();
+        }
+
+        addToCartBtn.addEventListener('click', function() {
+          addToCart(parseQty());
+        });
+
+        buyNowBtn.addEventListener('click', function() {
+          if (items === 0) addToCart(1);
+          checkoutSection.classList.remove('d-none');
+          window.scrollTo({ top: checkoutSection.offsetTop - 16, behavior: 'smooth' });
+        });
+
+        proceedCheckout.addEventListener('click', function() {
+          checkoutSection.classList.remove('d-none');
+          window.scrollTo({ top: checkoutSection.offsetTop - 16, behavior: 'smooth' });
+        });
+
+        checkoutForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (!checkoutForm.checkValidity()) {
+            checkoutForm.classList.add('was-validated');
+            return;
+          }
+          alert('Order placed successfully!');
+          items = 0;
+          recompute();
+          checkoutSection.classList.add('d-none');
+        });
+
+        var displayPriceEl = document.getElementById('displayPrice');
+        if (displayPriceEl) displayPriceEl.textContent = formatCurrency(price);
+        recompute();
+      })();
+    </script>
+  </body>
+  </html>
+
+

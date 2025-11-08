@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitDeck Gym - Cardio Exercise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --first-color: hsl(79, 72%, 55%);
+            --first-color-light: hsl(79, 97%, 77%);
+            --first-color-alt: hsl(79, 67%, 52%);
+            --first-color-dark: hsl(79, 63%, 50%);
+            --first-color-gray: hsl(79, 6%, 64%);
+            --title-color: hsl(180, 4%, 98%);
+            --title-color-black: hsl(180, 4%, 12%);
+            --text-color: hsl(180, 4%, 72%);
+            --text-color-light: hsl(180, 4%, 65%);
+            --body-color: hsl(180, 12%, 8%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(90deg, var(--first-color), var(--first-color-dark));
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            animation: pulse 2s infinite;
+        }
+
+        .logo-text {
+            color: var(--title-color-black);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-left: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            color: var(--title-color-black);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--title-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--title-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            color: var(--title-color);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--first-color-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--first-color);
+            color: var(--title-color-black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--first-color-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--first-color-light);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--first-color);
+        }
+
+        .cardio-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--first-color);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        /* Equipment Section */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .equipment-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .equipment-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .equipment-content {
+            padding: 20px;
+        }
+
+        .equipment-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        /* Programs Section */
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            color: var(--first-color);
+            margin-bottom: 20px;
+        }
+
+        .program-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--title-color-black);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Cardio Exercise Programs</h1>
+            <p>Boost your heart health, burn calories, and improve your endurance with our state-of-the-art cardio equipment and training programs</p>
+            <a href="#programs" class="btn">Explore Programs</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Benefits of Cardio Training</h2>
+            <div class="cardio-benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="benefit-title">Heart Health</h3>
+                    <p>Strengthen your heart muscle, improve circulation, and reduce the risk of heart disease.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3 class="benefit-title">Weight Management</h3>
+                    <p>Burn calories efficiently and maintain a healthy weight with regular cardio exercise.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3 class="benefit-title">Improved Lung Capacity</h3>
+                    <p>Increase your oxygen intake and improve respiratory function with cardio workouts.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="benefit-title">Mental Health</h3>
+                    <p>Reduce stress, anxiety, and depression while boosting your mood with endorphins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section class="section" style="background: hsl(180, 12%, 10%);">
+        <div class="container">
+            <h2 class="section-title">Cardio Equipment</h2>
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Treadmills" class="equipment-img">
+                    <div class="equipment-content">
+                        <h3 class="equipment-title">Treadmills</h3>
+                        <p>State-of-the-art treadmills with incline settings, heart rate monitoring, and virtual running programs.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elliptical Trainers" class="equipment-img">
+                    <div class="equipment-content">
+                        <h3 class="equipment-title">Elliptical Trainers</h3>
+                        <p>Low-impact full-body workout machines that simulate walking, running, and stair climbing.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stationary Bikes" class="equipment-img">
+                    <div class="equipment-content">
+                        <h3 class="equipment-title">Stationary Bikes</h3>
+                        <p>Upright and recumbent bikes with various resistance levels and pre-programmed workouts.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <img src="https://images.unsplash.com/photo-1576671414121-aa0e18871b2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rowing Machines" class="equipment-img">
+                    <div class="equipment-content">
+                        <h3 class="equipment-title">Rowing Machines</h3>
+                        <p>Full-body workout equipment that strengthens both upper and lower body while providing cardio benefits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section" id="programs">
+        <div class="container">
+            <h2 class="section-title">Cardio Programs</h2>
+            <div class="programs-container">
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-walking"></i>
+                    </div>
+                    <h3 class="program-title">Beginner Cardio</h3>
+                    <p>Perfect for those new to exercise. Low-intensity workouts to build endurance gradually.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="program-title">Intermediate Training</h3>
+                    <p>Moderate intensity workouts for those with some cardio experience looking to improve.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="program-title">Advanced HIIT</h3>
+                    <p>High-intensity interval training for maximum calorie burn and cardiovascular improvement.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+   
+
+    <script>
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.benefit-card, .equipment-card, .program-card, .testimonial-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeUp 1s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (navMenu.style.display === 'flex') {
+                            navMenu.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

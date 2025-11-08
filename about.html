@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FitDeck Gym</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --first-color: hsl(79, 72%, 55%);
+            --first-color-light: hsl(79, 97%, 77%);
+            --first-color-alt: hsl(79, 67%, 52%);
+            --first-color-dark: hsl(79, 63%, 50%);
+            --first-color-gray: hsl(79, 6%, 64%);
+            --title-color: hsl(180, 4%, 98%);
+            --title-color-black: hsl(180, 4%, 12%);
+            --text-color: hsl(180, 4%, 72%);
+            --text-color-light: hsl(180, 4%, 65%);
+            --body-color: hsl(180, 12%, 8%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--body-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--first-color-dark);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--first-color-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--first-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: var(--first-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            color: var(--title-color);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--first-color-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Content Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--first-color-light);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--first-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .about-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .about-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-icon {
+            font-size: 3rem;
+            color: var(--first-color);
+            margin-bottom: 20px;
+        }
+
+        .about-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        /* Owner Section */
+        .owner-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .owner-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--first-color);
+            margin-bottom: 20px;
+        }
+
+        .owner-name {
+            font-size: 2rem;
+            color: var(--first-color-light);
+            margin-bottom: 10px;
+        }
+
+        .owner-title {
+            color: var(--first-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Location Section */
+        .location-section {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid var(--first-color-dark);
+            text-align: center;
+        }
+
+        .location-title {
+            color: var(--first-color-light);
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .address {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            color: var(--first-color);
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: hsl(180, 12%, 10%);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid var(--first-color-dark);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--first-color);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            color: var(--text-color-light);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .location-section {
+                padding: 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Validation Error Messages */
+        #usr, #eml, #pas, #cpas, #nm {
+            color: red;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Fit<span>Deck</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>About FitDeck Gym</h1>
+            <p>Discover our story, our mission, and the people behind Rajkot's premier high-intensity training facility</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Philosophy</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3 class="about-title">Our Mission</h3>
+                    <p>To empower individuals to transform their lives through high-intensity training, proper nutrition, and a supportive community environment.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="about-title">Our Values</h3>
+                    <p>We believe in dedication, perseverance, and community. Every member is part of our fitness family, and we're committed to your success.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="about-title">Our Approach</h3>
+                    <p>Science-backed training methods combined with personalized attention to help you achieve your fitness goals efficiently and safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Owner Section -->
+    <section class="section" style="background: hsl(180, 12%, 10%);">
+        <div class="container">
+            <h2 class="section-title">Meet Our Founder</h2>
+            <div class="owner-section">
+                <img src="IMG_E0898.JPG" alt="Aditya Mevcha" class="owner-image">
+                <h3 class="owner-name">Aditya Mevcha</h3>
+                <p class="owner-title">Owner & Head Trainer</p>
+                <p>With over 8 years of experience in fitness training and nutrition, Aditya founded FitDeck Gym to bring world-class high-intensity training to Rajkot. His passion for helping others achieve their fitness goals drives everything we do at FitDeck.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section">
+        <div class="container">
+            <div class="location-section">
+                <h2 class="location-title">Our Location</h2>
+                <p class="address">
+                    <i class="fas fa-map-marker-alt"></i><br>
+                    FitDeck Gym<br>
+                     Kalawad Road, Rajkot<br>
+                    Gujarat - 360005
+                </p>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-section">
+                <p>Have questions or ready to start your fitness journey? Reach out to us!</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <span>9227905675</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <span>adimevcha@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock contact-icon"></i>
+                        <span>Mon-Sat: 5:00 AM - 11:00 PM | Sun: 7:00 AM - 9:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="location-section" style="margin-top: 40px;">
+                <h2 class="location-title">Contact Form</h2>
+                <form id="contact-form" onsubmit="return validate();" style="max-width: 500px; margin: 0 auto;">
+                    <div style="margin-bottom: 20px;">
+                        <label for="user" style="display: block; margin-bottom: 8px; color: var(--title-color);">Name</label>
+                        <input type="text" id="user" name="user" required style="width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 2px solid var(--first-color-dark); border-radius: 10px; color: var(--title-color); font-size: 16px;">
+                        <span id="usr" style="color: red; font-weight: bold; font-size: 14px;"></span>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="emails" style="display: block; margin-bottom: 8px; color: var(--title-color);">Email</label>
+                        <input type="email" id="emails" name="emails" required style="width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 2px solid var(--first-color-dark); border-radius: 10px; color: var(--title-color); font-size: 16px;">
+                        <span id="eml" style="color: red; font-weight: bold; font-size: 14px;"></span>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="num" style="display: block; margin-bottom: 8px; color: var(--title-color);">Phone Number</label>
+                        <input type="tel" id="num" name="num" required style="width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 2px solid var(--first-color-dark); border-radius: 10px; color: var(--title-color); font-size: 16px;">
+                        <span id="nm" style="color: red; font-weight: bold; font-size: 14px;"></span>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; padding: 15px; background: var(--first-color); color: var(--title-color-black); border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <a href="index.html" class="logo">Fit<span>Deck</span></a>
+            <p>Transform your body, transform your life</p>
+            
+            <p class="copyright">© 2023 FitDeck Gym. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function validate() {
+            var username = document.getElementById("user").value.trim();
+            var email = document.getElementById("emails").value.trim();
+            var number = document.getElementById("num").value.trim();
+
+            // Clear previous messages
+            document.getElementById("usr").innerHTML = "";
+            document.getElementById("eml").innerHTML = "";
+            document.getElementById("nm").innerHTML = "";
+
+            // Username validation
+            if (username === "") {
+                document.getElementById("usr").innerHTML = "Please Enter Your Name";
+                return false;
+            }
+            if (!isNaN(username)) {
+                document.getElementById("usr").innerHTML = "Please Enter Characters Only";
+                return false;
+            }
+
+            // Email validation
+            if (email === "") {
+                document.getElementById("eml").innerHTML = "Please Enter Your Email";
+                return false;
+            }
+            var emailformat = /^[a-zA-Z0-9._-]+@[a-zA-Z]{2,6}\.[a-z]{2,4}(\.[a-z]{0,2})?$/;
+            if (!emailformat.test(email)) {
+                document.getElementById("eml").innerHTML = "Please Enter Correct Email Format";
+                return false;
+            }
+
+            // Phone number validation
+            if (number === "") {
+                document.getElementById("nm").innerHTML = "Please Enter Your Contact Number";
+                return false;
+            }
+            if (isNaN(number)) {
+                document.getElementById("nm").innerHTML = "Please Enter Numbers Only";
+                return false;
+            }
+            if (number.length !== 10) {
+                document.getElementById("nm").innerHTML = "Please Enter a 10-Digit Number";
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.about-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Admin - Equipment</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-dumbbell sidebar-logo-icon"></i>
+                <h1 class="sidebar-logo-text">GYM<span class="accent">ADMIN</span></h1>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="members.html" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>Members</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="equipment.html" class="nav-link active">
+                    <i class="fas fa-dumbbell nav-icon"></i>
+                    <span>Equipment</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="admin_about.html" class="nav-link">
+                    <i class="fas fa-info-circle nav-icon"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-chart-line nav-icon"></i>
+                    <span>Analytics</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog nav-icon"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="signin.html" class="nav-link">
+                    <i class="fas fa-sign-out-alt nav-icon"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <h1 class="page-title">Equipment Management</h1>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <span class="user-name">Admin User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Equipment Stats -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Equipment</h3>
+                        <i class="fas fa-dumbbell card-icon"></i>
+                    </div>
+                    <div class="card-value">156</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-check-circle"></i>
+                        <span>All systems operational</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Equipment</h3>
+                        <i class="fas fa-check-circle card-icon"></i>
+                    </div>
+                    <div class="card-value">148</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>94.9% operational</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Maintenance Due</h3>
+                        <i class="fas fa-wrench card-icon"></i>
+                    </div>
+                    <div class="card-value">8</div>
+                    <div class="card-change change-negative">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Requires attention</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Equipment Value</h3>
+                        <i class="fas fa-dollar-sign card-icon"></i>
+                    </div>
+                    <div class="card-value">$2.4M</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>Total asset value</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment Search and Filters -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Equipment Inventory</h2>
+                    <div class="table-actions">
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <input type="text" placeholder="Search equipment..." style="padding: 0.5rem 1rem; background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary);">
+                            <select style="padding: 0.5rem 1rem; background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary);">
+                                <option>All Equipment</option>
+                                <option>Cardio</option>
+                                <option>Strength</option>
+                                <option>Functional</option>
+                                <option>Maintenance</option>
+                            </select>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Add Equipment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Equipment ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Last Maintenance</th>
+                            <th>Next Service</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#E001</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-running" style="color: var(--text-accent);"></i>
+                                    <span>Treadmill Pro Max</span>
+                                </div>
+                            </td>
+                            <td>Cardio</td>
+                            <td>Floor 1 - Zone A</td>
+                            <td><span class="status-badge status-active">Operational</span></td>
+                            <td>Dec 10, 2024</td>
+                            <td>Jan 10, 2025</td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-wrench"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#E002</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-dumbbell" style="color: var(--text-accent);"></i>
+                                    <span>Weight Bench Pro</span>
+                                </div>
+                            </td>
+                            <td>Strength</td>
+                            <td>Floor 2 - Zone B</td>
+                            <td><span class="status-badge status-active">Operational</span></td>
+                            <td>Dec 08, 2024</td>
+                            <td>Jan 08, 2025</td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-wrench"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#E003</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-bicycle" style="color: var(--text-accent);"></i>
+                                    <span>Elliptical Machine</span>
+                                </div>
+                            </td>
+                            <td>Cardio</td>
+                            <td>Floor 1 - Zone C</td>
+                            <td><span class="status-badge status-pending">Maintenance</span></td>
+                            <td>Dec 05, 2024</td>
+                            <td>Dec 20, 2024</td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#E004</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-ship" style="color: var(--text-accent);"></i>
+                                    <span>Rowing Machine</span>
+                                </div>
+                            </td>
+                            <td>Cardio</td>
+                            <td>Floor 1 - Zone A</td>
+                            <td><span class="status-badge status-active">Operational</span></td>
+                            <td>Dec 12, 2024</td>
+                            <td>Jan 12, 2025</td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-wrench"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#E005</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-weight-hanging" style="color: var(--text-accent);"></i>
+                                    <span>Power Rack</span>
+                                </div>
+                            </td>
+                            <td>Strength</td>
+                            <td>Floor 2 - Zone A</td>
+                            <td><span class="status-badge status-inactive">Out of Order</span></td>
+                            <td>Nov 28, 2024</td>
+                            <td>Dec 18, 2024</td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-tools"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Equipment Categories -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Cardio Equipment</h3>
+                        <i class="fas fa-heartbeat card-icon"></i>
+                    </div>
+                    <div class="card-value">45</div>
+                    <div class="card-change">
+                        <span>pieces</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Treadmills: 12</li>
+                            <li>Ellipticals: 8</li>
+                            <li>Bikes: 15</li>
+                            <li>Rowing Machines: 6</li>
+                            <li>Stair Climbers: 4</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Strength Equipment</h3>
+                        <i class="fas fa-dumbbell card-icon"></i>
+                    </div>
+                    <div class="card-value">78</div>
+                    <div class="card-change">
+                        <span>pieces</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Weight Benches: 20</li>
+                            <li>Power Racks: 8</li>
+                            <li>Dumbbells: 25</li>
+                            <li>Barbells: 15</li>
+                            <li>Machines: 10</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Functional Equipment</h3>
+                        <i class="fas fa-running card-icon"></i>
+                    </div>
+                    <div class="card-value">23</div>
+                    <div class="card-change">
+                        <span>pieces</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Kettlebells: 8</li>
+                            <li>Medicine Balls: 6</li>
+                            <li>Resistance Bands: 5</li>
+                            <li>Battle Ropes: 2</li>
+                            <li>TRX Systems: 2</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Maintenance Schedule</h3>
+                        <i class="fas fa-calendar-alt card-icon"></i>
+                    </div>
+                    <div class="card-value">Weekly</div>
+                    <div class="card-change">
+                        <span>routine checks</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Daily: Safety checks</li>
+                            <li>Weekly: Deep cleaning</li>
+                            <li>Monthly: Calibration</li>
+                            <li>Quarterly: Major service</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance Log -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Recent Maintenance Log</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Export Log
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Log Maintenance
+                        </button>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Equipment</th>
+                            <th>Maintenance Type</th>
+                            <th>Technician</th>
+                            <th>Date</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Treadmill Pro Max</td>
+                            <td>Routine Service</td>
+                            <td>Mike Johnson</td>
+                            <td>Dec 10, 2024</td>
+                            <td>2 hours</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                            <td>$150</td>
+                        </tr>
+                        <tr>
+                            <td>Weight Bench Pro</td>
+                            <td>Safety Check</td>
+                            <td>Sarah Wilson</td>
+                            <td>Dec 08, 2024</td>
+                            <td>30 min</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                            <td>$50</td>
+                        </tr>
+                        <tr>
+                            <td>Elliptical Machine</td>
+                            <td>Repair</td>
+                            <td>David Brown</td>
+                            <td>Dec 05, 2024</td>
+                            <td>4 hours</td>
+                            <td><span class="status-badge status-pending">In Progress</span></td>
+                            <td>$300</td>
+                        </tr>
+                        <tr>
+                            <td>Rowing Machine</td>
+                            <td>Calibration</td>
+                            <td>Emily Davis</td>
+                            <td>Dec 12, 2024</td>
+                            <td>1 hour</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                            <td>$75</td>
+                        </tr>
+                        <tr>
+                            <td>Power Rack</td>
+                            <td>Major Repair</td>
+                            <td>John Smith</td>
+                            <td>Nov 28, 2024</td>
+                            <td>6 hours</td>
+                            <td><span class="status-badge status-inactive">Pending Parts</span></td>
+                            <td>$500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Equipment Usage Analytics -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Most Used Equipment</h3>
+                        <i class="fas fa-chart-bar card-icon"></i>
+                    </div>
+                    <div class="card-value">Treadmill</div>
+                    <div class="card-change">
+                        <span>156 uses today</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Treadmill</span>
+                            <span>156</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Elliptical</span>
+                            <span>98</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Weight Bench</span>
+                            <span>87</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Rowing Machine</span>
+                            <span>65</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Peak Usage Hours</h3>
+                        <i class="fas fa-clock card-icon"></i>
+                    </div>
+                    <div class="card-value">6-8 PM</div>
+                    <div class="card-change">
+                        <span>busiest time</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>6-8 PM</span>
+                            <span>85%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>5-6 PM</span>
+                            <span>72%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>7-9 PM</span>
+                            <span>68%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>12-1 PM</span>
+                            <span>45%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Maintenance Costs</h3>
+                        <i class="fas fa-dollar-sign card-icon"></i>
+                    </div>
+                    <div class="card-value">$1,075</div>
+                    <div class="card-change">
+                        <span>this month</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Repairs</span>
+                            <span>$800</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Routine Service</span>
+                            <span>$200</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Parts</span>
+                            <span>$75</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Labor</span>
+                            <span>$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Equipment Age</h3>
+                        <i class="fas fa-calendar-alt card-icon"></i>
+                    </div>
+                    <div class="card-value">3.2</div>
+                    <div class="card-change">
+                        <span>years average</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>New (0-1 year)</span>
+                            <span>25%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Good (1-3 years)</span>
+                            <span>45%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Fair (3-5 years)</span>
+                            <span>25%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Old (5+ years)</span>
+                            <span>5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.querySelector('input[placeholder="Search equipment..."]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const tableRows = document.querySelectorAll('.data-table tbody tr');
+                    
+                    tableRows.forEach(row => {
+                        const equipmentName = row.cells[1].textContent.toLowerCase();
+                        if (equipmentName.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Filter functionality
+            const filterSelect = document.querySelector('select');
+            if (filterSelect) {
+                filterSelect.addEventListener('change', function() {
+                    const filterValue = this.value;
+                    const tableRows = document.querySelectorAll('.data-table tbody tr');
+                    
+                    tableRows.forEach(row => {
+                        if (filterValue === 'All Equipment') {
+                            row.style.display = '';
+                        } else {
+                            const type = row.cells[2].textContent.toLowerCase();
+                            if (type.includes(filterValue.toLowerCase())) {
+                                row.style.display = '';
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Add equipment button
+            const addEquipmentBtn = document.querySelector('.btn-primary');
+            if (addEquipmentBtn) {
+                addEquipmentBtn.addEventListener('click', function() {
+                    alert('Add Equipment functionality would open a modal or redirect to a form page');
+                });
+            }
+
+            // Action buttons
+            document.querySelectorAll('.btn-secondary, .btn-danger').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-eye')) {
+                        alert('View equipment details');
+                    } else if (icon.classList.contains('fa-wrench') || icon.classList.contains('fa-tools')) {
+                        alert('Schedule maintenance');
+                    } else if (icon.classList.contains('fa-exclamation-triangle')) {
+                        alert('Equipment requires immediate attention');
+                    } else if (icon.classList.contains('fa-trash')) {
+                        if (confirm('Are you sure you want to remove this equipment?')) {
+                            alert('Equipment removed successfully');
+                        }
+                    }
+                });
+            });
+
+            // Animate counters
+            const counters = document.querySelectorAll('.card-value');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (!isNaN(target.replace(/[^0-9.-]/g, ''))) {
+                    const finalValue = parseFloat(target.replace(/[^0-9.-]/g, ''));
+                    let current = 0;
+                    const increment = finalValue / 100;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= finalValue) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current).toString();
+                        }
+                    }, 20);
+                }
+            });
+
+            // Table row hover effects
+            const tableRows = document.querySelectorAll('.data-table tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(0, 242, 254, 0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+
+            // Equipment status color coding
+            const statusBadges = document.querySelectorAll('.status-badge');
+            statusBadges.forEach(badge => {
+                const status = badge.textContent.toLowerCase();
+                if (status.includes('operational')) {
+                    badge.style.background = 'rgba(67, 233, 123, 0.2)';
+                    badge.style.color = '#43e97b';
+                } else if (status.includes('maintenance')) {
+                    badge.style.background = 'rgba(250, 112, 154, 0.2)';
+                    badge.style.color = '#fa709a';
+                } else if (status.includes('out of order')) {
+                    badge.style.background = 'rgba(255, 107, 107, 0.2)';
+                    badge.style.color = '#ff6b6b';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

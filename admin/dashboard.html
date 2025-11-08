@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Admin - Dashboard</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-dumbbell sidebar-logo-icon"></i>
+                <h1 class="sidebar-logo-text">GYM<span class="accent">ADMIN</span></h1>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link active">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="members.html" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>Members</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="equipment.html" class="nav-link">
+                    <i class="fas fa-dumbbell nav-icon"></i>
+                    <span>Equipment</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="admin_about.html" class="nav-link">
+                    <i class="fas fa-info-circle nav-icon"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="analytics.html" class="nav-link">
+                    <i class="fas fa-chart-line nav-icon"></i>
+                    <span>Analytics</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog nav-icon"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="signin.html" class="nav-link">
+                    <i class="fas fa-sign-out-alt nav-icon"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <h1 class="page-title">Dashboard</h1>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <span class="user-name">Admin User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Dashboard Cards -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Members</h3>
+                        <i class="fas fa-users card-icon"></i>
+                    </div>
+                    <div class="card-value">1,247</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+12% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Memberships</h3>
+                        <i class="fas fa-id-card card-icon"></i>
+                    </div>
+                    <div class="card-value">892</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+8% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Monthly Revenue</h3>
+                        <i class="fas fa-dollar-sign card-icon"></i>
+                    </div>
+                    <div class="card-value">$45,230</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+15% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Equipment Status</h3>
+                        <i class="fas fa-tools card-icon"></i>
+                    </div>
+                    <div class="card-value">98%</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-check-circle"></i>
+                        <span>All systems operational</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Recent Member Activity</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-filter"></i>
+                            Filter
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Member ID</th>
+                            <th>Name</th>
+                            <th>Activity</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#M001</td>
+                            <td>John Smith</td>
+                            <td>Weight Training</td>
+                            <td>2 hours ago</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M002</td>
+                            <td>Sarah Johnson</td>
+                            <td>Cardio Session</td>
+                            <td>3 hours ago</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M003</td>
+                            <td>Mike Davis</td>
+                            <td>Personal Training</td>
+                            <td>4 hours ago</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M004</td>
+                            <td>Emily Wilson</td>
+                            <td>Yoga Class</td>
+                            <td>5 hours ago</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M005</td>
+                            <td>David Brown</td>
+                            <td>Swimming</td>
+                            <td>6 hours ago</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Peak Hours</h3>
+                        <i class="fas fa-clock card-icon"></i>
+                    </div>
+                    <div class="card-value">6-8 PM</div>
+                    <div class="card-change">
+                        <span>Most active time</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Popular Equipment</h3>
+                        <i class="fas fa-dumbbell card-icon"></i>
+                    </div>
+                    <div class="card-value">Treadmill</div>
+                    <div class="card-change">
+                        <span>Used 156 times today</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">New Members Today</h3>
+                        <i class="fas fa-user-plus card-icon"></i>
+                    </div>
+                    <div class="card-value">12</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+3 from yesterday</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Staff Online</h3>
+                        <i class="fas fa-user-tie card-icon"></i>
+                    </div>
+                    <div class="card-value">8/12</div>
+                    <div class="card-change">
+                        <span>Currently working</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment Status -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Equipment Status</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Equipment
+                        </button>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Equipment ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Last Maintenance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#E001</td>
+                            <td>Treadmill Pro Max</td>
+                            <td>Cardio</td>
+                            <td><span class="status-badge status-active">Operational</span></td>
+                            <td>2 days ago</td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-wrench"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#E002</td>
+                            <td>Weight Bench</td>
+                            <td>Strength</td>
+                            <td><span class="status-badge status-active">Operational</span></td>
+                            <td>1 week ago</td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-wrench"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#E003</td>
+                            <td>Elliptical Machine</td>
+                            <td>Cardio</td>
+                            <td><span class="status-badge status-pending">Maintenance</span></td>
+                            <td>3 days ago</td>
+                            <td>
+                                <button class="btn btn-danger">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#E004</td>
+                            <td>Rowing Machine</td>
+                            <td>Cardio</td>
+                            <td><span class="status-badge status-active">Operational</span></td>
+                            <td>5 days ago</td>
+                            <td>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-wrench"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Add some interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate counters
+            const counters = document.querySelectorAll('.card-value');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (!isNaN(target.replace(/[^0-9.-]/g, ''))) {
+                    const finalValue = parseFloat(target.replace(/[^0-9.-]/g, ''));
+                    let current = 0;
+                    const increment = finalValue / 100;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= finalValue) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current).toString();
+                        }
+                    }, 20);
+                }
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.dashboard-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Table row hover effects
+            const tableRows = document.querySelectorAll('.data-table tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(0, 242, 254, 0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+
+            // Mobile sidebar toggle (if needed)
+            const sidebarToggle = document.createElement('button');
+            sidebarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            sidebarToggle.className = 'sidebar-toggle d-none';
+            sidebarToggle.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--primary-gradient);
+                border: none;
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            `;
+            
+            document.body.appendChild(sidebarToggle);
+            
+            // Show sidebar toggle on mobile
+            if (window.innerWidth <= 768) {
+                sidebarToggle.classList.remove('d-none');
+                sidebarToggle.addEventListener('click', function() {
+                    document.querySelector('.sidebar').classList.toggle('open');
+                });
+            }
+        });
+
+        // Real-time updates simulation
+        setInterval(() => {
+            const activeMembers = document.querySelector('.dashboard-card .card-value');
+            if (activeMembers && activeMembers.textContent.includes('892')) {
+                const randomChange = Math.floor(Math.random() * 3) - 1;
+                const currentValue = parseInt(activeMembers.textContent);
+                const newValue = Math.max(0, currentValue + randomChange);
+                activeMembers.textContent = newValue;
+            }
+        }, 30000); // Update every 30 seconds
+    </script>
+</body>
+</html>

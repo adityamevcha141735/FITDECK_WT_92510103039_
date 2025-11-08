@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Admin - Members</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-dumbbell sidebar-logo-icon"></i>
+                <h1 class="sidebar-logo-text">GYM<span class="accent">ADMIN</span></h1>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="members.html" class="nav-link active">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>Members</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="equipment.html" class="nav-link">
+                    <i class="fas fa-dumbbell nav-icon"></i>
+                    <span>Equipment</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="admin_about.html" class="nav-link">
+                    <i class="fas fa-info-circle nav-icon"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-chart-line nav-icon"></i>
+                    <span>Analytics</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog nav-icon"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="signin.html" class="nav-link">
+                    <i class="fas fa-sign-out-alt nav-icon"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <h1 class="page-title">Member Management</h1>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <span class="user-name">Admin User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Member Stats -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Members</h3>
+                        <i class="fas fa-users card-icon"></i>
+                    </div>
+                    <div class="card-value">1,247</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+12% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Members</h3>
+                        <i class="fas fa-user-check card-icon"></i>
+                    </div>
+                    <div class="card-value">892</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+8% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">New This Month</h3>
+                        <i class="fas fa-user-plus card-icon"></i>
+                    </div>
+                    <div class="card-value">156</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+23% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Membership Revenue</h3>
+                        <i class="fas fa-dollar-sign card-icon"></i>
+                    </div>
+                    <div class="card-value">$45,230</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+15% from last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Search and Filters -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Member Directory</h2>
+                    <div class="table-actions">
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <input type="text" placeholder="Search members..." style="padding: 0.5rem 1rem; background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary);">
+                            <select style="padding: 0.5rem 1rem; background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary);">
+                                <option>All Members</option>
+                                <option>Active</option>
+                                <option>Inactive</option>
+                                <option>Premium</option>
+                                <option>Basic</option>
+                            </select>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Add Member
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Member ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Membership</th>
+                            <th>Join Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#M001</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div class="user-avatar" style="width: 30px; height: 30px; font-size: 0.8rem;">JS</div>
+                                    <span>John Smith</span>
+                                </div>
+                            </td>
+                            <td>john.smith@email.com</td>
+                            <td>(555) 123-4567</td>
+                            <td>Premium</td>
+                            <td>Jan 15, 2024</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M002</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div class="user-avatar" style="width: 30px; height: 30px; font-size: 0.8rem;">SJ</div>
+                                    <span>Sarah Johnson</span>
+                                </div>
+                            </td>
+                            <td>sarah.johnson@email.com</td>
+                            <td>(555) 234-5678</td>
+                            <td>Basic</td>
+                            <td>Feb 03, 2024</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M003</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div class="user-avatar" style="width: 30px; height: 30px; font-size: 0.8rem;">MD</div>
+                                    <span>Mike Davis</span>
+                                </div>
+                            </td>
+                            <td>mike.davis@email.com</td>
+                            <td>(555) 345-6789</td>
+                            <td>Premium</td>
+                            <td>Mar 10, 2024</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M004</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div class="user-avatar" style="width: 30px; height: 30px; font-size: 0.8rem;">EW</div>
+                                    <span>Emily Wilson</span>
+                                </div>
+                            </td>
+                            <td>emily.wilson@email.com</td>
+                            <td>(555) 456-7890</td>
+                            <td>Basic</td>
+                            <td>Apr 22, 2024</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#M005</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div class="user-avatar" style="width: 30px; height: 30px; font-size: 0.8rem;">DB</div>
+                                    <span>David Brown</span>
+                                </div>
+                            </td>
+                            <td>david.brown@email.com</td>
+                            <td>(555) 567-8901</td>
+                            <td>Premium</td>
+                            <td>May 05, 2024</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Membership Types -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Basic Membership</h3>
+                        <i class="fas fa-id-card card-icon"></i>
+                    </div>
+                    <div class="card-value">$29.99</div>
+                    <div class="card-change">
+                        <span>per month</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Gym access</li>
+                            <li>Basic equipment</li>
+                            <li>Locker room</li>
+                            <li>WiFi access</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Premium Membership</h3>
+                        <i class="fas fa-crown card-icon"></i>
+                    </div>
+                    <div class="card-value">$49.99</div>
+                    <div class="card-change">
+                        <span>per month</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>All Basic features</li>
+                            <li>Premium equipment</li>
+                            <li>Personal trainer</li>
+                            <li>Nutrition consultation</li>
+                            <li>Sauna access</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">VIP Membership</h3>
+                        <i class="fas fa-gem card-icon"></i>
+                    </div>
+                    <div class="card-value">$99.99</div>
+                    <div class="card-change">
+                        <span>per month</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>All Premium features</li>
+                            <li>24/7 access</li>
+                            <li>Private training</li>
+                            <li>Massage therapy</li>
+                            <li>Priority booking</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Student Membership</h3>
+                        <i class="fas fa-graduation-cap card-icon"></i>
+                    </div>
+                    <div class="card-value">$19.99</div>
+                    <div class="card-change">
+                        <span>per month</span>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Basic features</li>
+                            <li>Student discount</li>
+                            <li>Study areas</li>
+                            <li>Group classes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Recent Member Activity</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Export Report
+                        </button>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Member</th>
+                            <th>Activity</th>
+                            <th>Duration</th>
+                            <th>Calories Burned</th>
+                            <th>Date & Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Smith</td>
+                            <td>Weight Training</td>
+                            <td>45 min</td>
+                            <td>320 cal</td>
+                            <td>Dec 15, 2024 - 6:30 PM</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Sarah Johnson</td>
+                            <td>Cardio Session</td>
+                            <td>30 min</td>
+                            <td>280 cal</td>
+                            <td>Dec 15, 2024 - 7:15 PM</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Mike Davis</td>
+                            <td>Personal Training</td>
+                            <td>60 min</td>
+                            <td>450 cal</td>
+                            <td>Dec 15, 2024 - 5:00 PM</td>
+                            <td><span class="status-badge status-pending">In Progress</span></td>
+                        </tr>
+                        <tr>
+                            <td>Emily Wilson</td>
+                            <td>Yoga Class</td>
+                            <td>50 min</td>
+                            <td>180 cal</td>
+                            <td>Dec 15, 2024 - 8:00 PM</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>David Brown</td>
+                            <td>Swimming</td>
+                            <td>40 min</td>
+                            <td>350 cal</td>
+                            <td>Dec 15, 2024 - 4:30 PM</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.querySelector('input[placeholder="Search members..."]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const tableRows = document.querySelectorAll('.data-table tbody tr');
+                    
+                    tableRows.forEach(row => {
+                        const memberName = row.cells[1].textContent.toLowerCase();
+                        if (memberName.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Filter functionality
+            const filterSelect = document.querySelector('select');
+            if (filterSelect) {
+                filterSelect.addEventListener('change', function() {
+                    const filterValue = this.value;
+                    const tableRows = document.querySelectorAll('.data-table tbody tr');
+                    
+                    tableRows.forEach(row => {
+                        if (filterValue === 'All Members') {
+                            row.style.display = '';
+                        } else {
+                            const status = row.cells[6].textContent.toLowerCase();
+                            if (status.includes(filterValue.toLowerCase())) {
+                                row.style.display = '';
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Add member button
+            const addMemberBtn = document.querySelector('.btn-primary');
+            if (addMemberBtn) {
+                addMemberBtn.addEventListener('click', function() {
+                    alert('Add Member functionality would open a modal or redirect to a form page');
+                });
+            }
+
+            // Action buttons
+            document.querySelectorAll('.btn-secondary, .btn-danger').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-eye')) {
+                        alert('View member details');
+                    } else if (icon.classList.contains('fa-edit')) {
+                        alert('Edit member information');
+                    } else if (icon.classList.contains('fa-trash')) {
+                        if (confirm('Are you sure you want to delete this member?')) {
+                            alert('Member deleted successfully');
+                        }
+                    }
+                });
+            });
+
+            // Animate counters
+            const counters = document.querySelectorAll('.card-value');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (!isNaN(target.replace(/[^0-9.-]/g, ''))) {
+                    const finalValue = parseFloat(target.replace(/[^0-9.-]/g, ''));
+                    let current = 0;
+                    const increment = finalValue / 100;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= finalValue) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current).toString();
+                        }
+                    }, 20);
+                }
+            });
+
+            // Table row hover effects
+            const tableRows = document.querySelectorAll('.data-table tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(0, 242, 254, 0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

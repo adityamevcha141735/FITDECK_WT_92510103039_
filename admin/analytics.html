@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Admin - Analytics</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-dumbbell sidebar-logo-icon"></i>
+                <h1 class="sidebar-logo-text">GYM<span class="accent">ADMIN</span></h1>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="members.html" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>Members</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="equipment.html" class="nav-link">
+                    <i class="fas fa-dumbbell nav-icon"></i>
+                    <span>Equipment</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="admin_about.html" class="nav-link">
+                    <i class="fas fa-info-circle nav-icon"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="analytics.html" class="nav-link active">
+                    <i class="fas fa-chart-line nav-icon"></i>
+                    <span>Analytics</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog nav-icon"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="signin.html" class="nav-link">
+                    <i class="fas fa-sign-out-alt nav-icon"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <h1 class="page-title">Analytics Dashboard</h1>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <span class="user-name">Admin User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Analytics Overview -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Revenue</h3>
+                        <i class="fas fa-dollar-sign card-icon"></i>
+                    </div>
+                    <div class="card-value">$127,450</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+18% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Members</h3>
+                        <i class="fas fa-users card-icon"></i>
+                    </div>
+                    <div class="card-value">892</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+12% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Equipment Usage</h3>
+                        <i class="fas fa-dumbbell card-icon"></i>
+                    </div>
+                    <div class="card-value">94.2%</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+3% from last month</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Member Retention</h3>
+                        <i class="fas fa-heart card-icon"></i>
+                    </div>
+                    <div class="card-value">87.5%</div>
+                    <div class="card-change change-positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+5% from last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="dashboard-grid" style="grid-template-columns: 2fr 1fr;">
+                <!-- Revenue Chart -->
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Revenue Trends</h3>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">7D</button>
+                            <button class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">30D</button>
+                            <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">90D</button>
+                        </div>
+                    </div>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Member Growth Chart -->
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Member Growth</h3>
+                        <i class="fas fa-chart-pie card-icon"></i>
+                    </div>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="memberChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment Usage Analytics -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Equipment Usage Analytics</h2>
+                    <div class="table-actions">
+                        <select style="padding: 0.5rem 1rem; background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary);">
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>Last 90 Days</option>
+                        </select>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Export Report
+                        </button>
+                    </div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Equipment</th>
+                            <th>Type</th>
+                            <th>Usage Count</th>
+                            <th>Hours Used</th>
+                            <th>Efficiency</th>
+                            <th>Revenue Generated</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-running" style="color: var(--text-accent);"></i>
+                                    <span>Treadmill Pro Max</span>
+                                </div>
+                            </td>
+                            <td>Cardio</td>
+                            <td>1,247</td>
+                            <td>623.5 hrs</td>
+                            <td><span class="status-badge status-active">98.2%</span></td>
+                            <td>$3,120</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.25rem; color: #10b981;">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>+12%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-dumbbell" style="color: var(--text-accent);"></i>
+                                    <span>Weight Bench Pro</span>
+                                </div>
+                            </td>
+                            <td>Strength</td>
+                            <td>987</td>
+                            <td>493.5 hrs</td>
+                            <td><span class="status-badge status-active">94.8%</span></td>
+                            <td>$2,470</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.25rem; color: #10b981;">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>+8%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-bicycle" style="color: var(--text-accent);"></i>
+                                    <span>Elliptical Machine</span>
+                                </div>
+                            </td>
+                            <td>Cardio</td>
+                            <td>756</td>
+                            <td>378 hrs</td>
+                            <td><span class="status-badge status-pending">87.3%</span></td>
+                            <td>$1,890</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.25rem; color: #ef4444;">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>-3%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-ship" style="color: var(--text-accent);"></i>
+                                    <span>Rowing Machine</span>
+                                </div>
+                            </td>
+                            <td>Cardio</td>
+                            <td>634</td>
+                            <td>317 hrs</td>
+                            <td><span class="status-badge status-active">91.5%</span></td>
+                            <td>$1,585</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.25rem; color: #10b981;">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>+15%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-weight-hanging" style="color: var(--text-accent);"></i>
+                                    <span>Power Rack</span>
+                                </div>
+                            </td>
+                            <td>Strength</td>
+                            <td>523</td>
+                            <td>261.5 hrs</td>
+                            <td><span class="status-badge status-active">89.7%</span></td>
+                            <td>$1,308</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.25rem; color: #10b981;">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>+6%</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Member Analytics -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Peak Hours Analysis</h3>
+                        <i class="fas fa-clock card-icon"></i>
+                    </div>
+                    <div style="height: 250px; position: relative;">
+                        <canvas id="peakHoursChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Membership Distribution</h3>
+                        <i class="fas fa-chart-pie card-icon"></i>
+                    </div>
+                    <div style="height: 250px; position: relative;">
+                        <canvas id="membershipChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="dashboard-card slide-up">
+                    <div class="card-header">
+                        <h3 class="card-title">Monthly Goals</h3>
+                        <i class="fas fa-target card-icon"></i>
+                    </div>
+                    <div style="padding: 1rem 0;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-secondary);">Revenue Target</span>
+                                <span style="color: var(--text-primary); font-weight: 600;">$127,450 / $150,000</span>
+                            </div>
+                            <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--primary-gradient); height: 100%; width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-secondary);">Member Target</span>
+                                <span style="color: var(--text-primary); font-weight: 600;">892 / 1,000</span>
+                            </div>
+                            <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--success-gradient); height: 100%; width: 89%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-secondary);">Equipment Efficiency</span>
+                                <span style="color: var(--text-primary); font-weight: 600;">94.2% / 95%</span>
+                            </div>
+                            <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--warning-gradient); height: 100%; width: 99%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="data-table-container slide-up">
+                <div class="table-header">
+                    <h2 class="table-title">Performance Metrics</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar"></i>
+                            Custom Range
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-share"></i>
+                            Share Report
+                        </button>
+                    </div>
+                </div>
+                <div style="padding: 2rem;">
+                    <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 2px solid var(--border-color);">
+                            <i class="fas fa-users" style="font-size: 2rem; color: var(--text-accent); margin-bottom: 1rem;"></i>
+                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">New Members</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">156 this month</p>
+                            <div style="color: #10b981; font-size: 0.8rem; margin-top: 0.5rem;">
+                                <i class="fas fa-arrow-up"></i> +23%
+                            </div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 2px solid var(--border-color);">
+                            <i class="fas fa-dollar-sign" style="font-size: 2rem; color: var(--text-accent); margin-bottom: 1rem;"></i>
+                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Avg Revenue</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">$142.90 per member</p>
+                            <div style="color: #10b981; font-size: 0.8rem; margin-top: 0.5rem;">
+                                <i class="fas fa-arrow-up"></i> +8%
+                            </div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 2px solid var(--border-color);">
+                            <i class="fas fa-clock" style="font-size: 2rem; color: var(--text-accent); margin-bottom: 1rem;"></i>
+                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Avg Session</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">67 minutes</p>
+                            <div style="color: #10b981; font-size: 0.8rem; margin-top: 0.5rem;">
+                                <i class="fas fa-arrow-up"></i> +5%
+                            </div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 2px solid var(--border-color);">
+                            <i class="fas fa-heart" style="font-size: 2rem; color: var(--text-accent); margin-bottom: 1rem;"></i>
+                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Satisfaction</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">4.8/5.0 rating</p>
+                            <div style="color: #10b981; font-size: 0.8rem; margin-top: 0.5rem;">
+                                <i class="fas fa-arrow-up"></i> +0.2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Chart.js configurations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [85000, 92000, 88000, 95000, 102000, 98000, 105000, 112000, 108000, 115000, 120000, 127450],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(59, 130, 246, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(59, 130, 246, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Member Growth Chart
+            const memberCtx = document.getElementById('memberChart').getContext('2d');
+            new Chart(memberCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['New Members', 'Returning Members', 'Premium Members'],
+                    datasets: [{
+                        data: [156, 456, 280],
+                        backgroundColor: ['#3b82f6', '#8b5cf6', '#06b6d4'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Peak Hours Chart
+            const peakHoursCtx = document.getElementById('peakHoursChart').getContext('2d');
+            new Chart(peakHoursCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['6AM', '8AM', '10AM', '12PM', '2PM', '4PM', '6PM', '8PM', '10PM'],
+                    datasets: [{
+                        label: 'Member Count',
+                        data: [45, 78, 65, 89, 72, 95, 156, 142, 38],
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                        borderColor: '#3b82f6',
+                        borderWidth: 2,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(59, 130, 246, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(59, 130, 246, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Membership Distribution Chart
+            const membershipCtx = document.getElementById('membershipChart').getContext('2d');
+            new Chart(membershipCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Basic', 'Premium', 'VIP', 'Student'],
+                    datasets: [{
+                        data: [456, 280, 89, 67],
+                        backgroundColor: ['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Animate counters
+            const counters = document.querySelectorAll('.card-value');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (!isNaN(target.replace(/[^0-9.-]/g, ''))) {
+                    const finalValue = parseFloat(target.replace(/[^0-9.-]/g, ''));
+                    let current = 0;
+                    const increment = finalValue / 100;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= finalValue) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current).toString();
+                        }
+                    }, 20);
+                }
+            });
+
+            // Table row hover effects
+            const tableRows = document.querySelectorAll('.data-table tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+
+            // Time period buttons
+            document.querySelectorAll('.btn-secondary, .btn-primary').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons in the same group
+                    this.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('btn-primary'));
+                    this.parentElement.querySelectorAll('button').forEach(b => b.classList.add('btn-secondary'));
+                    
+                    // Add active class to clicked button
+                    this.classList.remove('btn-secondary');
+                    this.classList.add('btn-primary');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

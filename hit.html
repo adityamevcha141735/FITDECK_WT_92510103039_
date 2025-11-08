@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitDeck Gym - High Intensity Training</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --first-color: hsl(79, 72%, 55%);
+            --first-color-light: hsl(79, 97%, 77%);
+            --first-color-alt: hsl(79, 67%, 52%);
+            --first-color-dark: hsl(79, 63%, 50%);
+            --first-color-gray: hsl(79, 6%, 64%);
+            --title-color: hsl(180, 4%, 98%);
+            --title-color-black: hsl(180, 4%, 12%);
+            --text-color: hsl(180, 4%, 72%);
+            --text-color-light: hsl(180, 4%, 65%);
+            --body-color: hsl(180, 12%, 8%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            color: var(--title-color);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--first-color-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--first-color);
+            color: var(--title-color-black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--first-color-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--first-color-light);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--first-color);
+        }
+
+        .hit-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .benefit-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--first-color);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        /* Workouts Section */
+        .workouts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .workout-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .workout-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .workout-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .workout-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .workout-card:hover .workout-img {
+            transform: scale(1.05);
+        }
+
+        .workout-content {
+            padding: 20px;
+        }
+
+        .workout-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        .workout-details {
+            margin-top: 15px;
+            padding: 15px;
+            background: hsl(180, 12%, 10%);
+            border-radius: 10px;
+        }
+
+        .workout-details h4 {
+            color: var(--first-color);
+            margin-bottom: 10px;
+        }
+
+        .workout-details ul {
+            padding-left: 20px;
+        }
+
+        .workout-details li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Programs Section */
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .program-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            color: var(--first-color);
+            margin-bottom: 20px;
+        }
+
+        .program-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid var(--first-color-dark);
+        }
+
+        .schedule-title {
+            color: var(--first-color-light);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .schedule-day {
+            padding: 20px;
+            background: hsl(180, 12%, 10%);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .schedule-day:hover {
+            transform: translateY(-5px);
+        }
+
+        .day-title {
+            color: var(--first-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .schedule-section {
+                padding: 20px;
+            }
+        }
+
+        /* Validation Error Messages */
+        #usr, #eml, #pas, #cpas, #nm {
+            color: red;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>High Intensity Training</h1>
+            <p>Push your limits with our high intensity training programs designed to maximize results in minimal time. Build strength, endurance, and transform your body.</p>
+            <a href="#programs" class="btn">Explore Programs</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Benefits of High Intensity Training</h2>
+            <div class="hit-benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-burn"></i>
+                    </div>
+                    <h3 class="benefit-title">Maximize Calorie Burn</h3>
+                    <p>HIT workouts continue to burn calories for hours after your session ends through the afterburn effect (EPOC).</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="benefit-title">Time Efficient</h3>
+                    <p>Get maximum results in minimal time. Most HIT workouts are 30 minutes or less but deliver exceptional results.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3 class="benefit-title">Build Lean Muscle</h3>
+                    <p>HIT stimulates muscle growth while burning fat, helping you achieve a toned, athletic physique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workouts Section -->
+    <section class="section" style="background: hsl(180, 12%, 10%);">
+        <div class="container">
+            <h2 class="section-title">HIT Workouts</h2>
+            <div class="workouts-grid">
+                
+                <div class="workout-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Circuit Training" class="workout-img">
+                    <div class="workout-content">
+                        <h3 class="workout-title">Circuit Training</h3>
+                        <p>Perform exercises back-to-back with minimal rest, targeting different muscle groups.</p>
+                        <div class="workout-details">
+                            <h4>Sample Circuit:</h4>
+                            <ul>
+                                <li>Kettlebell Swings (45 sec)</li>
+                                <li>Push-ups (45 sec)</li>
+                                <li>Box Jumps (45 sec)</li>
+                                <li>Rest (30 sec)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workout-card">
+                    <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="EMOM Workouts" class="workout-img">
+                    <div class="workout-content">
+                        <h3 class="workout-title">EMOM Workouts</h3>
+                        <p>Every Minute On the Minute - complete a set number of reps at the start of each minute.</p>
+                        <div class="workout-details">
+                            <h4>Sample EMOM:</h4>
+                            <ul>
+                                <li>Min 1: 10 Thrusters</li>
+                                <li>Min 2: 15 Calorie Row</li>
+                                <li>Min 3: 20 Sit-ups</li>
+                                <li>Repeat for 15-20 min</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workout-card">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AMRAP Workouts" class="workout-img">
+                    <div class="workout-content">
+                        <h3 class="workout-title">AMRAP Workouts</h3>
+                        <p>As Many Rounds As Possible - complete as many rounds of a circuit as you can in a set time.</p>
+                        <div class="workout-details">
+                            <h4>Sample AMRAP (12 min):</h4>
+                            <ul>
+                                <li>8 Pull-ups</li>
+                                <li>10 Push Presses</li>
+                                <li>12 Air Squats</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Schedule Section -->
+    <section class="section">
+        <div class="container">
+            <div class="schedule-section">
+                <h2 class="schedule-title">Weekly HIT Schedule</h2>
+                <div class="schedule-grid">
+                    <div class="schedule-day">
+                        <h3 class="day-title">Monday</h3>
+                        <p>Full Body HIT</p>
+                        <p>30 min | Strength Focus</p>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <h3 class="day-title">Tuesday</h3>
+                        <p>Cardio HIT</p>
+                        <p>25 min | Endurance Focus</p>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <h3 class="day-title">Wednesday</h3>
+                        <p>Active Recovery</p>
+                        <p>Yoga or Light Cardio</p>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <h3 class="day-title">Thursday</h3>
+                        <p>Upper Body HIT</p>
+                        <p>30 min | Power Focus</p>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <h3 class="day-title">Friday</h3>
+                        <p>Lower Body HIT</p>
+                        <p>30 min | Strength Focus</p>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <h3 class="day-title">Saturday</h3>
+                        <p>Metabolic Conditioning</p>
+                        <p>40 min | Full Intensity</p>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <h3 class="day-title">Sunday</h3>
+                        <p>Rest Day</p>
+                        <p>Recovery & Stretching</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="section">
+        <div class="container">
+            <div class="schedule-section">
+                <h2 class="schedule-title">Contact Us</h2>
+                <form id="contact-form" onsubmit="return validate();" style="max-width: 500px; margin: 0 auto;">
+                    <div style="margin-bottom: 20px;">
+                        <label for="user" style="display: block; margin-bottom: 8px; color: var(--title-color);">Name</label>
+                        <input type="text" id="user" name="user" required style="width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 2px solid var(--first-color-dark); border-radius: 10px; color: var(--title-color); font-size: 16px;">
+                        <span id="usr" style="color: red; font-weight: bold; font-size: 14px;"></span>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="emails" style="display: block; margin-bottom: 8px; color: var(--title-color);">Email</label>
+                        <input type="email" id="emails" name="emails" required style="width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 2px solid var(--first-color-dark); border-radius: 10px; color: var(--title-color); font-size: 16px;">
+                        <span id="eml" style="color: red; font-weight: bold; font-size: 14px;"></span>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="num" style="display: block; margin-bottom: 8px; color: var(--title-color);">Phone Number</label>
+                        <input type="tel" id="num" name="num" required style="width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 2px solid var(--first-color-dark); border-radius: 10px; color: var(--title-color); font-size: 16px;">
+                        <span id="nm" style="color: red; font-weight: bold; font-size: 14px;"></span>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function validate() {
+            var username = document.getElementById("user").value.trim();
+            var email = document.getElementById("emails").value.trim();
+            var number = document.getElementById("num").value.trim();
+
+            // Clear previous messages
+            document.getElementById("usr").innerHTML = "";
+            document.getElementById("eml").innerHTML = "";
+            document.getElementById("nm").innerHTML = "";
+
+            // Username validation
+            if (username === "") {
+                document.getElementById("usr").innerHTML = "Please Enter Your Name";
+                return false;
+            }
+            if (!isNaN(username)) {
+                document.getElementById("usr").innerHTML = "Please Enter Characters Only";
+                return false;
+            }
+
+            // Email validation
+            if (email === "") {
+                document.getElementById("eml").innerHTML = "Please Enter Your Email";
+                return false;
+            }
+            var emailformat = /^[a-zA-Z0-9._-]+@[a-zA-Z]{2,6}\.[a-z]{2,4}(\.[a-z]{0,2})?$/;
+            if (!emailformat.test(email)) {
+                document.getElementById("eml").innerHTML = "Please Enter Correct Email Format";
+                return false;
+            }
+
+            // Phone number validation
+            if (number === "") {
+                document.getElementById("nm").innerHTML = "Please Enter Your Contact Number";
+                return false;
+            }
+            if (isNaN(number)) {
+                document.getElementById("nm").innerHTML = "Please Enter Numbers Only";
+                return false;
+            }
+            if (number.length !== 10) {
+                document.getElementById("nm").innerHTML = "Please Enter a 10-Digit Number";
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.benefit-card, .workout-card, .program-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Yoga Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --first-color: hsl(79, 72%, 55%);
+            --first-color-light: hsl(79, 97%, 77%);
+            --first-color-alt: hsl(79, 67%, 52%);
+            --first-color-dark: hsl(79, 63%, 50%);
+            --first-color-gray: hsl(79, 6%, 64%);
+            --title-color: hsl(180, 4%, 98%);
+            --title-color-black: hsl(180, 4%, 12%);
+            --text-color: hsl(180, 4%, 72%);
+            --text-color-light: hsl(180, 4%, 65%);
+            --body-color: hsl(180, 12%, 8%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+            color: var(--title-color);
+            animation: fadeIn 1s ease-out;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--first-color-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Content Section */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--first-color-light);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--first-color);
+        }
+
+        /* Yoga Poses */
+        .yoga-poses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pose-card {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--first-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 1s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .pose-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pose-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .pose-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .pose-card:hover .pose-img {
+            transform: scale(1.05);
+        }
+
+        .pose-content {
+            padding: 25px;
+        }
+
+        .pose-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--first-color-light);
+        }
+
+        .pose-benefits {
+            margin-top: 20px;
+            padding: 15px;
+            background: hsl(180, 12%, 10%);
+            border-radius: 10px;
+            border-left: 4px solid var(--first-color);
+        }
+
+        .pose-benefits h4 {
+            color: var(--first-color);
+            margin-bottom: 10px;
+        }
+
+        .pose-benefits ul {
+            padding-left: 20px;
+        }
+
+        .pose-benefits li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Breathing Section */
+        .breathing-section {
+            background: linear-gradient(145deg, hsl(180, 12%, 12%), hsl(180, 12%, 8%));
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid var(--first-color-dark);
+            text-align: center;
+        }
+
+        .breathing-title {
+            color: var(--first-color-light);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .breathing-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .breathing-step {
+            padding: 20px;
+            background: hsl(180, 12%, 10%);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .breathing-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--first-color);
+            margin-bottom: 15px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .breathing-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Basic Yoga Guide</h1>
+            <p>Discover the foundational yoga poses to improve flexibility, strength, and mental clarity. Perfect for beginners and experienced practitioners alike.</p>
+        </div>
+    </section>
+
+    <!-- Yoga Poses Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Essential Yoga Poses</h2>
+            <div class="yoga-poses">
+                <!-- Mountain Pose -->
+                <div class="pose-card">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Mountain Pose" class="pose-img">
+                    <div class="pose-content">
+                        <h3 class="pose-title">Mountain Pose (Tadasana)</h3>
+                        <p>Stand tall with feet together, shoulders relaxed, weight evenly distributed through your soles. Arms at sides. Take a deep breath and raise your hands overhead.</p>
+                        <div class="pose-benefits">
+                            <h4>Benefits:</h4>
+                            <ul>
+                                <li>Improves posture</li>
+                                <li>Strengthens thighs, knees, and ankles</li>
+                                <li>Relieves sciatica</li>
+                                <li>Reduces flat feet</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Downward Dog -->
+                <div class="pose-card">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80" alt="Downward-Facing Dog" class="pose-img">
+                    <div class="pose-content">
+                        <h3 class="pose-title">Downward-Facing Dog (Adho Mukha Svanasana)</h3>
+                        <p>Start on your hands and knees. Lift your hips up and back, straightening your legs and arms to form an inverted V shape.</p>
+                        <div class="pose-benefits">
+                            <h4>Benefits:</h4>
+                            <ul>
+                                <li>Calms the brain and relieves stress</li>
+                                <li>Strengthens arms and legs</li>
+                                <li>Stretches shoulders, hamstrings, and calves</li>
+                                <li>Energizes the body</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Warrior II -->
+                <div class="pose-card">
+                    <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Warrior II Pose" class="pose-img">
+                    <div class="pose-content">
+                        <h3 class="pose-title">Warrior II (Virabhadrasana II)</h3>
+                        <p>Stand with feet wide apart. Turn your right foot out 90 degrees and left foot in slightly. Bend your right knee over right ankle.</p>
+                        <div class="pose-benefits">
+                            <h4>Benefits:</h4>
+                            <ul>
+                                <li>Strengthens legs and ankles</li>
+                                <li>Stretches groins, chest and lungs, shoulders</li>
+                                <li>Stimulates abdominal organs</li>
+                                <li>Increases stamina</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tree Pose -->
+                <div class="pose-card">
+                    <img src="aasan.png" alt="Tree Pose" class="pose-img">
+                    <div class="pose-content">
+                        <h3 class="pose-title">Tree Pose (Vrksasana)</h3>
+                        <p>Stand straight and shift weight onto left foot. Place right foot on left thigh, keeping hips forward. Bring palms together in front of chest.</p>
+                        <div class="pose-benefits">
+                            <h4>Benefits:</h4>
+                            <ul>
+                                <li>Improves balance and stability</li>
+                                <li>Strengthens thighs, calves, ankles, and spine</li>
+                                <li>Stretches groins and inner thighs</li>
+                                <li>Relieves sciatica</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Child's Pose -->
+                <div class="pose-card">
+                    <img src="balasan.avif" alt="Child's Pose" class="pose-img">
+                    <div class="pose-content">
+                        <h3 class="pose-title">Child's Pose (Balasana)</h3>
+                        <p>Kneel on floor, touch big toes together and sit on heels. Separate knees hip-width apart. Exhale and lay torso between thighs.</p>
+                        <div class="pose-benefits">
+                            <h4>Benefits:</h4>
+                            <ul>
+                                <li>Gently stretches hips, thighs, and ankles</li>
+                                <li>Calms the brain and helps relieve stress</li>
+                                <li>Relieves back and neck pain</li>
+                                <li>Helps with fatigue</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cobra Pose -->
+                <div class="pose-card">
+                    <img src="bhuju.jpg" alt="Cobra Pose" class="pose-img">
+                    <div class="pose-content">
+                        <h3 class="pose-title">Cobra Pose (Bhujangasana)</h3>
+                        <p>Lie on your stomach with your hands under your shoulders. Press into your hands to lift your chest off the floor, keeping your hips grounded.</p>
+                        <div class="pose-benefits">
+                            <h4>Benefits:</h4>
+                            <ul>
+                                <li>Strengthens the spine</li>
+                                <li>Stretches chest and lungs, shoulders, and abdomen</li>
+                                <li>Firms the buttocks</li>
+                                <li>Helps relieve stress and fatigue</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breathing Section -->
+    <section class="section">
+        <div class="container">
+            <div class="breathing-section">
+                <h2 class="breathing-title">Yogic Breathing (Pranayama)</h2>
+                <p>Pranayama is the practice of breath control in yoga. It's a fundamental part of yoga practice that helps to calm the mind and prepare for meditation.</p>
+                
+                <div class="breathing-steps">
+                    <div class="breathing-step">
+                        <div class="step-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h3>Deep Belly Breathing</h3>
+                        <p>Focus on expanding your belly as you inhale deeply through your nose, and contract as you exhale.</p>
+                    </div>
+                    
+                    <div class="breathing-step">
+                        <div class="step-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <h3>Equal Breathing</h3>
+                        <p>Inhale for a count of four, then exhale for a count of four. Maintain this equal rhythm.</p>
+                    </div>
+                    
+                    <div class="breathing-step">
+                        <div class="step-icon">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <h3>Alternate Nostril Breathing</h3>
+                        <p>Close your right nostril and inhale through the left, then close the left and exhale through the right.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const poseCards = document.querySelectorAll('.pose-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            poseCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
